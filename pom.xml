@@ -1,21 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-   		<artifactId>spring-boot-starter-parent</artifactId>
-    	<version>2.0.0.RELEASE</version>
-		<relativePath/>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.RELEASE</version>
+		<relativePath />
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.redmic.lib</groupId>
-	<artifactId>template-lib</artifactId>
+	<artifactId>jts4jackson</artifactId>
 	<packaging>jar</packaging>
-	<version>x.y.z</version>
-	<name>template-lib</name>
-	<description>template-lib description</description>
-	
+	<version>0.0.1</version>
+	<name>jts4jackson</name>
+	<description>Jts serialization and deserialization for Jackson</description>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -24,18 +25,43 @@
 		<java.version>1.8</java.version>
 
 		<!-- REDMIC -->
-		
+
 		<!-- OTHERS -->
-		
+		<jts-core.version>1.16.0</jts-core.version>
+		<spatial4j.version>0.7</spatial4j.version>
+
 		<!-- Version plugins -->
 		<jacoco.version>0.8.1</jacoco.version>
 
 		<!-- Environment variables -->
 		<env.MAVEN_REPO_URL>https://artifactory.redmic.net/artifactory</env.MAVEN_REPO_URL>
 	</properties>
-	
+
 	<dependencies>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
 		
+		<dependency>
+			<groupId>org.locationtech.jts</groupId>
+			<artifactId>jts-core</artifactId>
+			<version>${jts-core.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.locationtech.spatial4j</groupId>
+			<artifactId>spatial4j</artifactId>
+			<version>${spatial4j.version}</version>
+		</dependency>
+
 		<!-- Logs -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -46,6 +72,14 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Tests -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<distributionManagement>
