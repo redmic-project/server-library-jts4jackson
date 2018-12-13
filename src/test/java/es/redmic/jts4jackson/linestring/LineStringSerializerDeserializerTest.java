@@ -1,4 +1,4 @@
-package es.redmic.jts4jackson.point;
+package es.redmic.jts4jackson.linestring;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import org.json.JSONException;
 import org.junit.Test;
 import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.LineString;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.core.io.ClassPathResource;
 
@@ -17,23 +17,23 @@ import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 
 import es.redmic.jts4jackson.module.JTSModule;
 
-public class PointSerializerDeserializerTest {
+public class LineStringSerializerDeserializerTest {
 
-	private String dataFile = "/data/point.json";
+	private String dataFile = "/data/lineString.json";
 
 	ObjectMapper mapper = new ObjectMapper();
 
 	@Test
-	public void sourceAndExpectedJson_AreEqual_IfDeserializeAndSerializePoint()
+	public void sourceAndExpectedJson_AreEqual_IfDeserializeAndSerializeLineString()
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 
 		mapper.registerModule(new JTSModule());
 
-		Point point = mapper.readValue(getClass().getResource(dataFile).openStream(), Point.class);
+		LineString lineString = mapper.readValue(getClass().getResource(dataFile).openStream(), LineString.class);
 
 		String source = new String(Files.readAllBytes(new ClassPathResource(dataFile).getFile().toPath()));
 
-		String expected = mapper.writeValueAsString(point);
+		String expected = mapper.writeValueAsString(lineString);
 
 		JSONAssert.assertEquals(expected, source, false);
 	}
@@ -42,13 +42,13 @@ public class PointSerializerDeserializerTest {
 	public void deserialize_ThrowExeption_IfModuleIsNotRegistry()
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 
-		mapper.readValue(getClass().getResource(dataFile).openStream(), Point.class);
+		mapper.readValue(getClass().getResource(dataFile).openStream(), LineString.class);
 	}
 
 	@Test(expected = JsonMappingException.class)
 	public void serialize_ThrowExeption_IfModuleIsNotRegistry()
 			throws JsonParseException, JsonMappingException, IOException, JSONException {
 
-		mapper.writeValueAsString(new GeometryFactory().createPoint());
+		mapper.writeValueAsString(new GeometryFactory().createLineString());
 	}
 }
