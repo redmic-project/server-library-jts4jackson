@@ -13,7 +13,7 @@
 	<groupId>es.redmic.lib</groupId>
 	<artifactId>jts4jackson</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1</version>
+	<version>0.0.1-feature-updateCI</version>
 	<name>jts4jackson</name>
 	<description>Jts serialization and deserialization for Jackson</description>
 
@@ -32,9 +32,6 @@
 
 		<!-- Version plugins -->
 		<jacoco.version>0.8.1</jacoco.version>
-
-		<!-- Environment variables -->
-		<env.MAVEN_REPO_URL>https://artifactory.redmic.net/artifactory</env.MAVEN_REPO_URL>
 	</properties>
 
 	<dependencies>
@@ -82,19 +79,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
-		<repository>
-			<id>central</id>
-			<name>redmic-releases</name>
-			<url>${env.MAVEN_REPO_URL}/libs-release-local</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>redmic-snapshots</name>
-			<url>${env.MAVEN_REPO_URL}/libs-snapshot-local</url>
-			<uniqueVersion>false</uniqueVersion>
-		</snapshotRepository>
-	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
