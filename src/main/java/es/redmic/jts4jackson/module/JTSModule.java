@@ -22,6 +22,7 @@ package es.redmic.jts4jackson.module;
 
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
 
 import com.fasterxml.jackson.core.json.PackageVersion;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -30,6 +31,8 @@ import es.redmic.jts4jackson.linestring.LineStringDeserializer;
 import es.redmic.jts4jackson.linestring.LineStringSerializer;
 import es.redmic.jts4jackson.point.PointDeserializer;
 import es.redmic.jts4jackson.point.PointSerializer;
+import es.redmic.jts4jackson.polygon.PolygonDeserializer;
+import es.redmic.jts4jackson.polygon.PolygonSerializer;
 
 public class JTSModule extends SimpleModule {
 
@@ -42,10 +45,12 @@ public class JTSModule extends SimpleModule {
 		// deserializers
 		addDeserializer(Point.class, new PointDeserializer());
 		addDeserializer(LineString.class, new LineStringDeserializer());
+		addDeserializer(Polygon.class, new PolygonDeserializer());
 
 		// serializers:
 		addSerializer(Point.class, new PointSerializer());
 		addSerializer(LineString.class, new LineStringSerializer());
+		addSerializer(Polygon.class, new PolygonSerializer());
 	}
 
 	@Override

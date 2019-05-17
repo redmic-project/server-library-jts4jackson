@@ -13,7 +13,7 @@
 	<groupId>es.redmic.lib</groupId>
 	<artifactId>jts4jackson</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<name>jts4jackson</name>
 	<description>Jts serialization and deserialization for Jackson</description>
 
